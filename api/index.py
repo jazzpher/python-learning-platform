@@ -1,12 +1,25 @@
-from flask import Flask, Request
-from flask.helpers import make_response
+from flask import Flask, render_template
+import os
 
-app = Flask(__name__)
+# Adjust the template and static folder paths
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 @app.route('/')
 def home():
-    return "Hello from Flask!"
+    return render_template('home.html')
 
-def handler(request: Request):
-    with app.request_context(request.environ):
-        return make_response(app.handle_request())
+@app.route('/courses')
+def courses():
+    return render_template('courses.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/lesson/python-basics')
+def python_basics():
+    return render_template('lesson.html', lesson_title="Python Basics", lesson_content="Here's where you'd put your lesson content.")
+
+# This is for Vercel serverless
+def handler(request, response):
+    return app(request, response)
