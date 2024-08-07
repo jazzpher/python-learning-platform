@@ -6,4 +6,5 @@ app = Flask(__name__)
 def home():
     return "Hello from Flask!"
 
+# This line is important for Vercel
 app = app
