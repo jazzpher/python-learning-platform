@@ -1,4 +1,5 @@
 from flask import Flask
+from flask.helpers import make_response
 
 app = Flask(__name__)
 
@@ -6,5 +7,9 @@ app = Flask(__name__)
 def home():
     return "Hello from Flask!"
 
-# This line is important for Vercel
+# This is the handler for Vercel serverless functions
+def handler(request):
+    return make_response(app.handle_request())
+
+# Keep this line
 app = app
