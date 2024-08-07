@@ -18,9 +18,7 @@ def about():
 def python_basics():
     return render_template('lesson.html', lesson_title="Python Basics", lesson_content="Here's where you'd put your lesson content.")
 
-# Add more routes for additional pages or functionalities as needed
+# Remove the if __name__ == '__main__': block entirely
 
-if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Vercel, 
-    # Vercel runs the app directly, so this block is not executed.
-    app.run(host='0.0.0.0', port=8080)
+# Add this line at the end of the file
+app = app
